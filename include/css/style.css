@@ -1,0 +1,15 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .div-left {
+    left: 0;
+    z-index: 1;
+  }
+  
+  .div-right {
+    right: 0;
+  }
