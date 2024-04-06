@@ -15,7 +15,7 @@ if (isset($_POST['submit_login'])) {
         $result = mysqli_query($condb, $query);
 
         if (mysqli_num_rows($result) == 1) {
-            $_SESSION['admin_username'] = $member_Username;
+            $_SESSION['admin_username'] = $admin_username;
             $_SESSION['success'] = "คุณได้เข้าสู้ระบบ";
             header("location: ../../Home.php");
         } else {
@@ -25,5 +25,9 @@ if (isset($_POST['submit_login'])) {
             header("location: ../../sign_in.php");
         }
     }
+} else {
+    array_push($errors, "Wrong Username or Password!");
+    $_SESSION['error'] = "ไม่สามารถลงชื่อเข้าสู่ระบบได้!";
+    session_write_close();
+    header("location: ../../sign_in.php");
 }
-?>

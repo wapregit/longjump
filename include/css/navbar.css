@@ -1,0 +1,15 @@
+.navbar-brand {
+    font-size: 2rem;
+    color: black;
+  }
+  
+  .navbar-logo {
+    width: 3rem;
+    margin-right: 1rem;
+  }
+  
+  .navbar {
+    background: linear-gradient(88deg, #afc1ef, rgb(235,238,235) 27%, white 100%);
+  }
+  
+  
