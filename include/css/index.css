@@ -36,7 +36,7 @@ h1 {
 
 .button-user {
     color: #fff;
-    font-size: 32px;
+    font-size: clamp(1rem, 0.7692rem + 0.7692vw, 2rem);
     width: 250px;
     border-radius: 50px;
     border: 5px solid #ffffff;
@@ -46,7 +46,7 @@ h1 {
 
 .button-admin {
     color: #fff;
-    font-size: 32px;
+    font-size: clamp(1rem, 0.7692rem + 0.7692vw, 2rem);
     width: 250px;
     border-radius: 50px;
     border: 5px solid #ffffff;

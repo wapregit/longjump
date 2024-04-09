@@ -5,7 +5,8 @@
 <body>
     <nav class="navbar navbar-expand-md bg-body">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand"
+                href="<?php if(isset($_SESSION['admin_username']))  { ?> home.php <?php } else { ?> index.html <?php } ?>">
                 <img class="navbar-logo" src="include/image/favicon.png" />
                 Long Jump Competition System
             </a>
@@ -18,10 +19,13 @@
             <?php if(isset($_SESSION['admin_username']))  { ?>
             <div id="navcol-1" class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#">กรรมการ</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">ยินดีต้อนรับ กรรมการ</a></li>
                 </ul>
-                <a class="btn btn-danger ms-md-2" role="button" href="logout.php?logout=1">ออกจากระบบ</a>
+                <a class="btn btn-danger ms-md-2" role="button"
+                    href="include/backend/logout.php?logout=1">ออกจากระบบ</a>
             </div>
             <?php } ?>
         </div>
     </nav>
+
+    <!-- <?php include('include/backend/loading.php'); ?> -->

@@ -1,15 +1,26 @@
-.navbar {
-  background: linear-gradient(to right, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
+:root {
+    --navbar-height: 70px;
 }
 
-.navbar-brand {
-    color: black;
-  }
-  
-  .navbar-logo {
+nav {
+    height: 70px;
+}
+
+main {
+    position: relative;
+    height: calc(100% - var(--navbar-height));
+}
+
+.navbar {
+    background: linear-gradient(
+        88deg,
+        #afc1ef,
+        rgb(166, 190, 251) 62%,
+        white 100%
+    );
+}
+
+.navbar-logo {
     width: 2rem;
     margin-right: 0.75rem;
-  }
-  
-
-  
+}
