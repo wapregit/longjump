@@ -10,12 +10,14 @@ include('include/asset/navbar.php');
 <link rel="stylesheet" href="include/css/body.css">
 
 <main style="background-color: #D9E1E4">
-    <button class="btn btn-success position-fixed end-0" id="button_add_program_form" onclick="new_program_form()"><i
-            class="bi bi-plus-circle-fill"></i></button>
-    <div id="form_container" class="d-flex flex-column align-items-center py-5">
-        <form class="form p-4 rounded-4 w-75" style="background-color: #C3CACD;" method="post">
-            <h1>เพิ่มรายการแข่งขัน
-            </h1>
+    <button class="btn btn-success position-fixed" id="button_add_program_form" onclick="new_program_form()"
+        style="top:10%; right: 5%; font-size: 2vw;"><i class="bi bi-plus-circle-fill"></i></button>
+    <button class="btn btn-success position-fixed" id="button_add_program_form" onclick="new_program_form()"
+        style="top:10%; right: 5%; font-size: 2vw;"><i class="bi bi-plus-circle-fill"></i></button>
+
+    <form class="form d-flex flex-column align-items-center py-5" id="program_form" method="post">
+        <div class="p-4 rounded-4 w-75" style="background-color: #C3CACD;">
+            <h1>เพิ่มรายการแข่งขัน</h1>
             <hr>
             <div class="row">
                 <div class="col-12 mb-3">
@@ -43,90 +45,91 @@ include('include/asset/navbar.php');
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
 
-        <div id="program_form" class="program_form w-75 mt-3">
+        <div class="program_form p-4 rounded-4 w-75 mt-3" style="background-color: #C3CACD;">
             <h5>รายการ 1</h5>
-            <form class="form p-4 rounded-4" style="background-color: #C3CACD;" method="post">
-                <div class="row">
-                    <div class="col-12 mb-3">
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label class="w-100" for="program_id">เลขรายการแข่งขัน</label>
-                                    <small id="program_idHelp" class="form-text text-muted">ตัวอย่าง:
-                                        101, 101/1 etc.</small>
-                                    <input class="form-control" type="text" name="program_id" id="program_id" required>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label class="w-100" for="program_name">ประเภทการแข่งขัน</label>
-                                    <small id="program_nameHelp" class="form-text text-muted">ตัวอย่าง:
-                                        กระโดดไกล</small>
-                                    <input type="text" class="form-control" name="program_name" id="program_name"
-                                        required>
-                                </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="w-100" for="program_id">เลขรายการแข่งขัน</label>
+                                <small id="program_idHelp" class="form-text text-muted">ตัวอย่าง:
+                                    101, 101/1 etc.</small>
+                                <input class="form-control" type="text" name="program_id[]" id="program_id" required>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 mb-3">
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label class="w-100" for="program_sex">เพศ</label>
-                                    <small id="program_sexHelp" class="form-text text-muted">ตัวอย่าง:
-                                        ชาย</small>
-                                    <select class="form-select" name="program_sex" id="program_sex" required>
-                                        <option selected disabled>เลือกเพศ</option>
-                                        <option value="ชาย">ชาย</option>
-                                        <option value="หญิง">หญิง</option>
-                                        <option value="ผสม">ผสม</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label class="w-100" for="program_age">ช่วงอายุ</label>
-                                    <small id="program_ageHelp" class="form-text text-muted">ตัวอย่าง:
-                                        14 (ไม่ต้องระบุปี)</small>
-                                    <input type="text" class="form-control" name="program_age" id="program_age"
-                                        required>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mb-3">
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label class="w-100" for="program_round">รอบการแข่งขัน</label>
-                                    <small id="program_roundHelp" class="form-text text-muted">ตัวอย่าง:
-                                        คัดเลือก, ชิงชนะเลิศ</small>
-                                    <select class="form-select" name="program_round" id="program_round" required>
-                                        <option selected disabled>เลือกรอบการแข่งขัน</option>
-                                        <option value="คัดเลือก">ชาย</option>
-                                        <option value="ชิงชนะเลิศ">หญิง</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label class="w-100" for="program_time">เวลาแข่งขัน</label>
-                                    <small id="program_ageHelp" class="form-text text-muted">ตัวอย่าง:
-                                        14 (ไม่ต้องระบุปี)</small>
-                                    <input type="time" class="form-control" name="program_time" id="program_time"
-                                        required>
-                                </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="w-100" for="program_name">ประเภทการแข่งขัน</label>
+                                <small id="program_nameHelp" class="form-text text-muted">ตัวอย่าง:
+                                    กระโดดไกล</small>
+                                <input type="text" class="form-control" name="program_name[]" id="program_name"
+                                    required>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+                <div class="col-12 mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="w-100" for="program_sex">เพศ</label>
+                                <small id="program_sexHelp" class="form-text text-muted">ตัวอย่าง:
+                                    ชาย</small>
+                                <select class="form-select" name="program_sex[]" id="program_sex" required>
+                                    <option selected disabled>เลือกเพศ</option>
+                                    <option value="ชาย">ชาย</option>
+                                    <option value="หญิง">หญิง</option>
+                                    <option value="ผสม">ผสม</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="w-100" for="program_age">ช่วงอายุ</label>
+                                <small id="program_ageHelp" class="form-text text-muted">ตัวอย่าง:
+                                    14 (ไม่ต้องระบุปี)</small>
+                                <input type="text" class="form-control" name="program_age[]" id="program_age" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="w-100" for="program_round">รอบการแข่งขัน</label>
+                                <small id="program_roundHelp" class="form-text text-muted">ตัวอย่าง:
+                                    คัดเลือก, ชิงชนะเลิศ</small>
+                                <select class="form-select" name="program_round[]" id="program_round" required>
+                                    <option selected disabled>เลือกรอบการแข่งขัน</option>
+                                    <option value="คัดเลือก">คัดเลือก</option>
+                                    <option value="ชิงชนะเลิศ">ชิงชนะเลิศ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="w-100" for="program_time">เวลาแข่งขัน</label>
+                                <small id="program_ageHelp" class="form-text text-muted">AM: ช่วงเช้า, PM:
+                                    ช่วงบ่าย
+                                </small>
+                                <input type="time" class="form-control" name="program_time[]" id="program_time"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </form>
 </main>
 
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
 </script>

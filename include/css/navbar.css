@@ -9,6 +9,7 @@ nav {
 main {
     position: relative;
     height: calc(100% - var(--navbar-height));
+    overflow: auto;
 }
 
 .navbar {
