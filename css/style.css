@@ -145,13 +145,25 @@ th {
 .result {
     width: 5%;
 }
+
 .card-button {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: #253648cc; /* Blue background color */
-    color: #fff; /* White text color */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+    background-color: #253648cc !important; /* Blue background color */
+    color: #fff !important; /* White text color */
     border: none; /* No border */
-    padding: 10px 20px; /* Padding */
-    border-radius: 20px; /* Rounded corners */
-    cursor: pointer; /* Cursor style */
-    transition: background-color 0.3s; /* Smooth background color transition */
+    padding: 10px 20px !important; /* Padding */
+    border-radius: 20px !important; /* Rounded corners */
+    cursor: pointer !important; /* Cursor style */
+    transition: background-color 0.3s !important; /* Smooth background color transition */
+    width: 25vw;
+    height: 20vw;
+}
+
+.card-button > img {
+    width: 60%;
+}
+
+.button-admin {
+    padding: 0.25vw 1.5vw;
+    font-size: clamp(0.75rem, 0.5625rem + 0.625vw, 1.5625rem);
 }
