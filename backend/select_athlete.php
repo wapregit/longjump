@@ -1,4 +1,5 @@
 <?php
+
 //ดึงข้อมูลจากตาราง competition_program
 $sql_select_program = "SELECT * FROM competition_program;";
 $query_select_program = $condb->query($sql_select_program);
@@ -7,7 +8,7 @@ while ($row_program = $query_select_program->fetch_assoc()) {
     $select_program[] = $row_program;
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['select-program'])) {
     $program_id = $_POST['select-program'];
 
     //ดึงข้อมูลจากตาราง competition_program

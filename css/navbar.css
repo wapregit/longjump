@@ -13,15 +13,25 @@ main {
 }
 
 .navbar {
-    background: linear-gradient(
-        88deg,
-        #afc1ef,
-        rgb(166, 190, 251) 62%,
-        white 100%
-    );
+    background: linear-gradient(#489ae0, #3eccb7);
+
 }
 
 .navbar-logo {
     width: 2rem;
     margin-right: 0.75rem;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background: #16141471;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#489ae0, #3eccb7);
+    box-shadow: 0 0px 28px rgba(73, 217, 138, 0.748);
 }

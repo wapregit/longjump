@@ -1,8 +1,6 @@
 <?php
 session_start();
 include('backend/bypass_detection.php');
-include('database/connect_database.php');
-include('backend/sql_query.php');
 include('asset/header.php');
 include('asset/navbar.php');
 ?>

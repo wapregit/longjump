@@ -167,3 +167,10 @@ th {
     padding: 0.25vw 1.5vw;
     font-size: clamp(0.75rem, 0.5625rem + 0.625vw, 1.5625rem);
 }
+
+.button-sidebar > button[title]:hover::after {
+    color: black;
+    content: attr(title);
+    position: fixed;
+    margin-left: 1vw;
+}
