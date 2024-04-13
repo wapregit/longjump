@@ -1,7 +1,6 @@
 <!-- CSS -->
 <link rel="stylesheet" href="css/navbar.css">
 
-
 <body>
     <nav class="navbar navbar-expand-md bg-body">
         <div class="container-fluid">

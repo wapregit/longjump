@@ -27,6 +27,28 @@ include('asset/navbar.php');
                         <?php } ?>
                     </select>
                 </form>
+
+                <div class="edit h-100" id="edit" onclick="edit_score_athlete()">
+                    <div class="input-group">
+                        <button class="rounded-start btn-edit">แก้ไข</button>
+                        <div class="input-group-append">
+                            <span class="input-group-text span-edit"
+                                style="border-top-left-radius: 0; border-bottom-left-radius: 0;"><i
+                                    class="bi bi-pencil-square"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="save h-100" id="save" style="display:none;">
+                    <div class="input-group">
+                        <button class="rounded-start btn-save">บันทึก</button>
+                        <div class="input-group-append">
+                            <span class="input-group-text span-save"
+                                style="border-top-left-radius: 0; border-bottom-left-radius: 0;"><i
+                                    class="bi bi-save2"></i></span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <?php if (isset($_POST['select-program']) && $_POST['select-program'] !== '') { ?>

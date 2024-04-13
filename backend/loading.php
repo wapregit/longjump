@@ -1,25 +1,3 @@
-<style>
-.spinner-wrapper {
-    background-color: #fff;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1vw;
-    transition: all 0.3s;
-}
-
-.spinner-grow {
-    height: 30px;
-    width: 30px;
-}
-</style>
-
 <div class="spinner-wrapper">
     <div class="spinner-grow text-primary" role="status">
         <span class="visually-hidden">Loading...</span>
