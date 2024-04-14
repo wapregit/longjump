@@ -5,9 +5,9 @@
 <?php
 include('../database/connect_database.php');
 
-if (isset($_POST['program_id'])) {
+if (isset($_POST['delete_program_id'])) {
     // รับข้อมูลรายการแข่งขัน
-    $program_id = $_POST['program_id'];
+    $program_id = $_POST['delete_program_id'];
 
 
     // เตรียมคำสั่ง SQL สำหรับการลบข้อมูลรายการแข่งขัน
@@ -35,7 +35,41 @@ if (isset($_POST['program_id'])) {
         </script>';
     } else {
         // กรณีที่ไม่สามารถเตรียมคำสั่ง SQL สำหรับการเพิ่มข้อมูลรายการแข่งขันได้
-        echo "Error: " . $sql_insert_program . "<br>" . $condb->$condb->close();
+        echo "Error: " . $sql_delete_program . "<br>" . $condb->$condb->close();
+    }
+}
+
+if (isset($_POST['delete_athlete_id'])) {
+    // รับข้อมูลรายการแข่งขัน
+    $athlete_id = $_POST['delete_athlete_id'];
+
+
+    // เตรียมคำสั่ง SQL สำหรับการลบข้อมูลรายการแข่งขัน
+    $sql_delete_athlete = "DELETE FROM competition_athlete WHERE athlete_id = ?";
+    $sql_prepare_delete_athlete = $condb->prepare($sql_delete_athlete);
+
+    if ($sql_prepare_delete_athlete) {
+        $sql_prepare_delete_athlete->bind_param("i", $athlete_id);
+        $sql_prepare_delete_athlete->execute();
+        $sql_prepare_delete_athlete->close();
+        // แสดงข้อความสำเร็จหลังจากเพิ่มข้อมูลเสร็จสิ้น
+        echo '<script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    icon: "success",
+                    title: "ลบนักกีฬาสำเร็จสำเร็จ",
+                    text: "Redirecting in 1 second",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    heightAuto: false
+                }).then(function() {
+                    window.location = "../add_athlete.php";
+                });
+            });
+        </script>';
+    } else {
+        // กรณีที่ไม่สามารถเตรียมคำสั่ง SQL สำหรับการเพิ่มข้อมูลรายการแข่งขันได้
+        echo "Error: " . $sql_delete_athlete . "<br>" . $condb->$condb->close();
     }
 }
 ?>

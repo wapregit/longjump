@@ -7,7 +7,7 @@
             <a class="navbar-brand"
                 href="<?php if (isset($_SESSION['admin_username'])) { ?> home.php <?php } else { ?> index.html <?php } ?>">
                 <img class="navbar-logo" src="image/favicon.png" />
-                Long Jump Competition System
+                <b class="h4">Long Jump Competition System</b>
             </a>
 
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1">

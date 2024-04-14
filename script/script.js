@@ -1,7 +1,6 @@
 var select_program = document.getElementById("select_program");
 var form = document.getElementById("form_select_program");
 select_program.addEventListener("change", function () {
-    // Get reference to the form
     form.submit();
 });
 
@@ -28,7 +27,7 @@ function save_program_form() {
     ) {
         // แสดงข้อความแจ้งเตือนถ้าฟอร์มไม่ครบ
         Swal.fire({
-            title: "กรุณากรอกข้อมูลให้ครบถ้วน",
+            title: "กรุณากรอกข้อมูลให้ครบถ้วน!",
             icon: "error",
             confirmButtonColor: "#1c7348",
             confirmButtonText: "ตกลง",
@@ -39,7 +38,7 @@ function save_program_form() {
 
     // ถ้าฟอร์มถูกกรอกครบแล้ว ให้แสดงคำถามยืนยัน
     Swal.fire({
-        title: "ยืนยันเพิ่มรายการแข่งขัน?",
+        title: "ยืนยันเพิ่มรายการแข่งขันหรือไม่?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#1c7348",
@@ -148,9 +147,60 @@ function add_athlete(button) {
         '<input type="text" class="form-control" name="athlete_club[]" id="athlete_club" autocomplete="off" required>';
 }
 
+function add_athlete_2(button) {
+    // หา div ที่ใกล้ที่สุดโดยใช้ closest()
+    var add_athlete = button.closest(".add_athlete");
+
+    // หาตารางภายใน div program_form
+    var table = add_athlete.querySelector(".table_add_athlete tbody");
+
+    add_athlete.querySelector(".table_add_athlete").style.display = "";
+
+    // สร้างแถวใหม่
+    var row = table.insertRow(-1); // -1 หมายถึงให้แถวใหม่ถูกเพิ่มที่ตำแหน่งสุดท้าย
+
+    // เพิ่ม class ให้แถวใหม่
+    row.classList.add("athlete");
+
+    // เพิ่มเซลล์ในแถวใหม่
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+
+    cell1.classList.add("text-center", "text-danger", "h3");
+    cell2.style.width = "20%";
+
+    // เพิ่มองค์ประกอบของ input ในเซลล์แต่ละเซลล์
+    cell1.innerHTML =
+        '<i class="bi bi-trash3-fill" onclick="remove_athlete_2(this)"></i>';
+    cell2.innerHTML =
+        '<input type="text" class="form-control" name="insert_athlete_bib[]" id="athlete_bib" autocomplete="off" required>';
+    cell3.innerHTML =
+        '<input type="text" class="form-control" name="insert_athlete_name[]" id="athlete_name" autocomplete="off" required>';
+    cell4.innerHTML =
+        '<input type="text" class="form-control" name="insert_athlete_club[]" id="athlete_club" autocomplete="off" required>';
+}
+
 function remove_athlete(button) {
     var program_form = button.closest(".program_form");
     var table = program_form.querySelector("#table_add_athlete");
+    var tbody = table.querySelector("tbody");
+    var athlete_row = tbody.querySelectorAll(".athlete");
+    // ตรวจสอบว่ายังมีแถวที่มี class "athlete" อยู่ใน tbody หรือไม่
+    if (athlete_row.length === 1) {
+        var row = button.closest("tr"); // หาแถวที่ปุ่มถูกคลิก
+        row.remove(); // ลบแถว
+        table.style.display = "none";
+    } else if (athlete_row.length > 0) {
+        var row = button.closest("tr"); // หาแถวที่ปุ่มถูกคลิก
+        row.remove(); // ลบแถว
+    }
+}
+
+function remove_athlete_2(button) {
+    var add_athlete = button.closest(".add_athlete");
+    var table = add_athlete.querySelector(".table_add_athlete");
     var tbody = table.querySelector("tbody");
     var athlete_row = tbody.querySelectorAll(".athlete");
     // ตรวจสอบว่ายังมีแถวที่มี class "athlete" อยู่ใน tbody หรือไม่
@@ -173,8 +223,64 @@ function edit_score_athlete() {
 }
 
 function submit_form_import_excel() {
-    let form = document.getElementById("form_import_excel");
-    form.action = "backend/import_excel.php";
-    form.method = "POST";
-    form.submit();
+    Swal.fire({
+        title: "ยืนยันการนำเข้าข้อมูลหรือไม่",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#1c7348",
+        cancelButtonColor: "#b72e3c",
+        confirmButtonText: "ตกลง",
+        cancelButtonText: "ยกเลิก",
+        heightAuto: false,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // ถ้ายืนยัน ส่งฟอร์มไปยัง backend/import_excel.php
+            let form = document.getElementById("form_import_excel");
+            form.action = "backend/import_excel.php";
+            form.method = "POST";
+            form.submit();
+        }
+    });
+}
+
+function submit_form_delete(formId) {
+    Swal.fire({
+        title: "ยืนยันการลบข้อมูลหรือไม่",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#1c7348",
+        cancelButtonColor: "#b72e3c",
+        confirmButtonText: "ตกลง",
+        cancelButtonText: "ยกเลิก",
+        heightAuto: false,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // ถ้ายืนยัน ส่งฟอร์มไปยัง backend/sql_delete.php
+            let form = document.getElementById(formId);
+            form.action = "backend/sql_delete.php";
+            form.method = "POST";
+            form.submit();
+        }
+    });
+}
+
+function submit_form_insert_athlete() {
+    Swal.fire({
+        title: "ยืนยันการเพิ่มข้อมูลหรือไม่",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#1c7348",
+        cancelButtonColor: "#b72e3c",
+        confirmButtonText: "ตกลง",
+        cancelButtonText: "ยกเลิก",
+        heightAuto: false,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // ถ้ายืนยัน ส่งฟอร์มไปยัง backend/sql_insert.php
+            let form = document.getElementById("form_insert_athlete");
+            form.action = "backend/sql_insert.php";
+            form.method = "POST";
+            form.submit();
+        }
+    });
 }

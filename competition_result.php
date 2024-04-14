@@ -4,6 +4,19 @@ include('database/connect_database.php');
 include('backend/sql_select.php');
 include('asset/header.php');
 include('asset/navbar.php');
+
+
+// ดึงข้อมูล
+$sql = "SELECT * FROM transaction_value ORDER BY value_id DESC";
+$stmt = $condb->prepare($sql);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+
+$stmt->close();
+
+
 ?>
 
 <body>
@@ -17,11 +30,11 @@ include('asset/navbar.php');
                                 <label for="select_program" class="form-label h4">เลือกรายการแข่งขัน</label>
                                 <hr>
                                 <select name="select_program" id="select_program" class="form-select form-select-lg">
-                                    <option value='' disabled selected>เลือกรายการแข่งขัน</option>
-                                    <?php foreach ($select_program as $select_program) { ?>
-                                        <option value="<?= $select_program['program_id']; ?>" <?php if (isset($_POST['select_program']) && $_POST['select_program'] == $select_program['program_id']) echo "selected"; ?>>
+                                    <option value='' disabled>เลือกรายการแข่งขัน</option>
+                                    <?php foreach ($select_program as $select_program_item) { ?>
+                                        <option value="<?= $select_program_item['program_id']; ?>" <?php if (isset($_POST['select_program']) && $_POST['select_program'] == $select_program_item['program_id']) echo "selected"; ?>>
                                             รายการที่
-                                            <?= $select_program['program_id'] . ' ' . $select_program['program_name'] . ' ' . $select_program['program_age'] . ' ' .  $select_program['program_sex']; ?>
+                                            <?= $select_program_item['program_id'] . ' ' . $select_program_item['program_name'] . ' ' . $select_program_item['program_age'] . ' ' .  $select_program_item['program_sex']; ?>
                                         </option>
                                     <?php } ?>
                                 </select>
@@ -155,13 +168,13 @@ include('asset/navbar.php');
                                                     <?= isset($athlete['athlete_club']) ? $athlete['athlete_club'] : 'N/A'; ?>
                                                 </td>
                                                 <td class="table-data text-center result">
-                                                    <?= isset($athlete['athlete_result_1']) ? $athlete['athlete_result_1'] : ''; ?>
+                                                    <?= isset($athlete['athlete_result_1']) ? $athlete['athlete_result_1'] : '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=1"><button>บันทึก</button></a>'; ?>
                                                 </td>
                                                 <td class="table-data text-center result">
-                                                    <?= isset($athlete['athlete_result_2']) ? $athlete['athlete_result_2'] : ''; ?>
+                                                    <?= isset($athlete['athlete_result_2']) ? $athlete['athlete_result_2'] : '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=2"><button>บันทึก</button></a>'; ?>
                                                 </td>
                                                 <td class="table-data text-center result">
-                                                    <?= isset($athlete['athlete_result_3']) ? $athlete['athlete_result_3'] : ''; ?>
+                                                    <?= isset($athlete['athlete_result_3']) ? $athlete['athlete_result_3'] : '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=3"><button>บันทึก</button></a>'; ?>
                                                 </td>
                                                 <td class="table-data text-center result">
                                                     <?= $athlete['athlete_bo3'] == '0' ? '' : $athlete['athlete_bo3']; ?>
@@ -170,13 +183,13 @@ include('asset/navbar.php');
                                                     <?= isset($athlete['athlete_new_order']) ? $athlete['athlete_new_order'] : ''; ?>
                                                 </td>
                                                 <td class="table-data text-center result">
-                                                    <?= isset($athlete['athlete_result_4']) ? $athlete['athlete_result_4'] : ''; ?>
+                                                    <?= isset($athlete['athlete_result_4']) ? $athlete['athlete_result_4'] : '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=4"><button>บันทึก</button></a>'; ?>
                                                 </td>
                                                 <td class="table-data text-center result">
-                                                    <?= isset($athlete['athlete_result_5']) ? $athlete['athlete_result_5'] : ''; ?>
+                                                    <?= isset($athlete['athlete_result_5']) ? $athlete['athlete_result_5'] : '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=5"><button>บันทึก</button></a>'; ?>
                                                 </td>
                                                 <td class="table-data text-center result">
-                                                    <?= isset($athlete['athlete_result_6']) ? $athlete['athlete_result_6'] : ''; ?>
+                                                    <?= isset($athlete['athlete_result_6']) ? $athlete['athlete_result_6'] : '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=6"><button>บันทึก</button></a>'; ?>
                                                 </td>
                                                 <td class="table-data text-center">
                                                     <?= $athlete['athlete_record'] == '0' ? '' : $athlete['athlete_record']; ?>
@@ -199,11 +212,6 @@ include('asset/navbar.php');
         </div>
     </main>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
-    </script>
-    <script src="script/script.js"></script>
+
+    <?php include('script.php'); ?>
     <?php include('asset/footer.php'); ?>

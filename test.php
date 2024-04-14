@@ -425,7 +425,7 @@ const videoForm = [];
         form.addEventListener('submit', function(event) {
             const confirmDelete = confirm(
                 'คุณต้องการลบหรือไม่? ถ้าลบข้อมูลบทเรียนหรือข้อมูลบทเรียนในหลักสูตรทั้งหมดจะถูกลบ!!'
-                );
+            );
             if (!confirmDelete) {
                 event.preventDefault();
             } else {

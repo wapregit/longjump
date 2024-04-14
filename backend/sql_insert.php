@@ -71,4 +71,40 @@ if (isset($_POST['program_title']) && isset($_POST['program_location']) && isset
         echo "Error: " . $sql_insert_program . "<br>" . $condb->$condb->close();
     }
 }
+
+if (isset($_POST['insert_athlete_bib']) && isset($_POST['insert_athlete_name']) && isset($_POST['insert_athlete_club'])) {
+    $program_id = $_POST['program_id'];
+    $athlete_bib = $_POST['insert_athlete_bib'];
+    $athlete_name = $_POST['insert_athlete_name'];
+    $athlete_club = $_POST['insert_athlete_club'];
+
+    $sql_insert_athlete = "INSERT INTO competition_athlete (program_id, athlete_bib, athlete_name, athlete_club) VALUES (?, ?, ?, ?)";
+    $sql_prepare_insert_athlete = $condb->prepare($sql_insert_athlete);
+    if ($sql_prepare_insert_athlete) {
+        // เพิ่มข้อมูลนักกีฬาโดยใช้ลำดับของข้อมูลเพื่อเชื่อมโยงกับ program_id
+        for ($i= 0; $i < count($athlete_name); $i++) {
+            $sql_prepare_insert_athlete->bind_param("ssss", $program_id, $athlete_bib[$i], $athlete_name[$i], $athlete_club[$i]);
+            $sql_prepare_insert_athlete->execute();
+        }
+        $sql_prepare_insert_athlete->close();
+        // แสดงข้อความสำเร็จหลังจากเพิ่มข้อมูลเสร็จสิ้น
+        echo '<script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    icon: "success",
+                    title: "เพิ่มข้อมูลสำเร็จ",
+                    text: "Redirecting in 1 second",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    heightAuto: false
+                }).then(function() {
+                    window.location = "../add_athlete.php";
+                });
+            });
+        </script>';
+    } else {
+        // กรณีไม่สามารถเตรียมคำสั่ง SQL สำหรับการเพิ่มข้อมูลนักกีฬาได้
+        echo "Error: " . $sql_insert_athlete . "<br>" . $condb->error;
+    }
+}
 ?>
