@@ -30,7 +30,8 @@ if (isset($_POST['submit_login'])) {
                     title: "เข้าสู่ระบบสำเร็จ",
                     text: "Redirecting in 1 second",
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
+                    heightAuto: false
                 }).then(function() {
                     window.location = "../home.php";
                 });
@@ -47,7 +48,8 @@ if (isset($_POST['submit_login'])) {
                     title: "ชื่อผู้ใช้หรือรหัสผ่านของคุณผิด",
                     text: "Redirecting in 1 second",
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
+                    heightAuto: false
                 }).then(function() {
                     window.location = "../sign_in.php";
                 });

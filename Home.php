@@ -5,8 +5,6 @@ include('asset/header.php');
 include('asset/navbar.php');
 ?>
 
-<link rel="stylesheet" href="css/body.css">
-
 <body style="background-image: url('image/background1.png');">
     <main>
         <div class="d-flex h-100 align-items-center text-center py-4 card-container">
@@ -19,7 +17,7 @@ include('asset/navbar.php');
                 <div onclick="window.location='add_athlete.php'"
                     class="card-button card p-4 d-flex flex-column align-items-center justify-content-around">
                     <img src="image/เลือกนักกีฬา.png" alt="เลือกนักกีฬา">
-                    <button class="rounded-pill fw-bolder button-admin">เพิ่มนักกีฬาในรายการแข่งขัน</button>
+                    <button class="rounded-pill fw-bolder button-admin">จัดการนักกีฬา</button>
                 </div>
                 <div onclick="window.location='competition_result.php'"
                     class="card-button card p-4 d-flex flex-column align-items-center justify-content-around">

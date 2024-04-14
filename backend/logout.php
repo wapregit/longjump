@@ -15,7 +15,8 @@
                     title: "ออกจากระบบสำเร็จ",
                     text: "Redirecting in 1 second",
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 1500,
+                    heightAuto: false
                 }).then(function() {
                     window.location = "../index.html";
                 });

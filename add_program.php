@@ -5,7 +5,6 @@ include('asset/header.php');
 include('asset/navbar.php');
 ?>
 
-<link rel="stylesheet" href="css/body.css">
 
 <main style="background-color: #D9E1E4">
     <div class="button-sidebar d-flex flex-column gap-2 position-fixed" style="top:9%; right: 8%;">

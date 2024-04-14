@@ -1,5 +1,5 @@
-var select_program = document.getElementById("select-program");
-var form = document.getElementById("form-select-program");
+var select_program = document.getElementById("select_program");
+var form = document.getElementById("form_select_program");
 select_program.addEventListener("change", function () {
     // Get reference to the form
     form.submit();
@@ -32,6 +32,7 @@ function save_program_form() {
             icon: "error",
             confirmButtonColor: "#1c7348",
             confirmButtonText: "ตกลง",
+            heightAuto: false,
         });
         return;
     }
@@ -45,11 +46,12 @@ function save_program_form() {
         cancelButtonColor: "#b72e3c",
         confirmButtonText: "ตกลง",
         cancelButtonText: "ยกเลิก",
+        heightAuto: false,
     }).then((result) => {
         if (result.isConfirmed) {
-            // ถ้ายืนยัน ส่งฟอร์มไปยัง backend/select_athlete.php
+            // ถ้ายืนยัน ส่งฟอร์มไปยัง backend/sql_select.php
             let form = document.getElementById("program_form");
-            form.action = "backend/insert_program.php";
+            form.action = "backend/sql_insert.php";
             form.method = "POST";
             form.submit();
         }
@@ -156,7 +158,7 @@ function remove_athlete(button) {
         var row = button.closest("tr"); // หาแถวที่ปุ่มถูกคลิก
         row.remove(); // ลบแถว
         table.style.display = "none";
-    }else if (athlete_row.length > 0) {
+    } else if (athlete_row.length > 0) {
         var row = button.closest("tr"); // หาแถวที่ปุ่มถูกคลิก
         row.remove(); // ลบแถว
     }
@@ -170,25 +172,9 @@ function edit_score_athlete() {
     edit_button.style.display = "none";
 }
 
-function format_date(newdate) {
-    let thai_months = [
-        "มกราคม",
-        "กุมภาพันธ์",
-        "มีนาคม",
-        "เมษายน",
-        "พฤษภาคม",
-        "มิถุนายน",
-        "กรกฎาคม",
-        "สิงหาคม",
-        "กันยายน",
-        "ตุลาคม",
-        "พฤศจิกายน",
-        "ธันวาคม",
-    ];
-
-    let thai_year = newdate.getFullYear() + 543;
-    let thai_month = thai_months[newdate.getMonth()];
-    let thai_day = newdate.getDate();
-
-    return "วันที่ " + thai_day + " " + thai_month + " " + thai_year;
+function submit_form_import_excel() {
+    let form = document.getElementById("form_import_excel");
+    form.action = "backend/import_excel.php";
+    form.method = "POST";
+    form.submit();
 }

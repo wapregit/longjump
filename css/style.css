@@ -1,10 +1,15 @@
 html,
 body {
-    height: 100vh;
-    width: 100vw;
+    height: 100vh !important;
+    width: 100vw !important;
     margin: 0;
     padding: 0;
+}
+
+body {
     position: relative;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 * {
@@ -30,14 +35,11 @@ form select,
     font-size: clamp(1rem, 0.8846rem + 0.3846vw, 1.5rem);
 }
 
-.div-select-program,
-.container-table {
-    width: 90%;
-}
-
 .edit,
 .save {
     cursor: pointer;
+    top: 0;
+    right: 0;
 }
 
 .btn-edit {
@@ -173,4 +175,18 @@ th {
     content: attr(title);
     position: fixed;
     margin-left: 1vw;
+}
+
+input[name="search_athlete"] {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-clip: padding-box;
 }
