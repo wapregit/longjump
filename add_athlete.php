@@ -22,63 +22,18 @@ include('asset/navbar.php');
                     <div class="col-8">
                         <div class="card py-3 px-4 m-auto rounded-3">
                             <div class="w-100">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <button class="btn btn-primary"
-                                            onclick="window.location.href='backend/download_excel.php'">ดาวน์โหลดตัวอย่าง
-                                            Excel</button>
-                                        <button class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#modal_import_excel">Import Excel</button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="modal_import_excel" tabindex="-1"
-                                            aria-labelledby="modal_import_excel_label" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="modal_import_excel_label">
-                                                            นำเข้าข้อมูลจาก Excel
-                                                        </h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form method="post" id="form_import_excel"
-                                                            enctype="multipart/form-data">
-                                                            <div class="col-12">
-                                                                <div class="form-group">
-                                                                    <input type="file" name="import_file"
-                                                                        id="import_file" class="form-control h-auto"
-                                                                        accept=".xlsx">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary"
-                                                            onclick="submit_form_import_excel()">ตกลง</button>
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">ปิด</button>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                <div class="d-flex align-items-center justify-content-end">
+                                    <form class=" form" method="GET">
+                                        <div class="search_button d-flex  align-items-center rounded-3 px-3"
+                                            style="background-color: rgb(242, 242, 242);box-shadow: 0 2px 3px 1px rgb(204, 204, 204);">
+                                            <i class="bi bi-search"></i>
+                                            <input type="text" name="search_athlete" placeholder="ค้าหาชื่อนักกีฬา.."
+                                                class="border-0 bg-transparent" autocomplete="off" style="outline: 0;">
                                         </div>
-                                    </div>
-
-                                    <div>
-                                        <form class=" form" method="GET">
-                                            <div class="search_button d-flex  align-items-center rounded-3 px-3"
-                                                style="background-color: rgb(242, 242, 242);box-shadow: 0 2px 3px 1px rgb(204, 204, 204);">
-                                                <i class="bi bi-search"></i>
-                                                <input type="text" name="search_athlete"
-                                                    placeholder="ค้าหาชื่อนักกีฬา.." class="border-0 bg-transparent"
-                                                    autocomplete="off" style="outline: 0;">
-                                            </div>
-                                    </div>
                                     </form>
                                 </div>
                                 <div class="mt-4">
-                                    <table class="table">
+                                    <table class="table table-show-data">
                                         <thead>
                                             <th class="fw-bolder">รายการ</th>
                                             <th class="fw-bolder">สโมสร</th>
@@ -93,10 +48,10 @@ include('asset/navbar.php');
                                             <?php } ?>
                                             <?php $current_program_id = $row['program_id']; ?>
                                             <tr>
-                                                <td colspan="2" class="fw-bolder h3">
+                                                <td colspan="2" class="fw-bolder h3 td-program">
                                                     <?= $row['program_id'] . ' : ' . $row['program_name'] . ' ' . (is_numeric($row['program_age']) ? $row['program_age'] . " ปี" : $row['program_age']) . ' ' . $row['program_sex']; ?>
                                                 </td>
-                                                <td class="text-center">
+                                                <td class="text-center td-program">
                                                     <form class="form"
                                                         id="form_delete_program_<?= $row['program_id'] ?>">
                                                         <input type="hidden" name="delete_program_id"
@@ -111,10 +66,10 @@ include('asset/navbar.php');
                                             <?php if (!in_array($row['athlete_name'], $select_athlete) && $row['athlete_name'] !== null) { ?>
                                             <?php $select_athlete[] = $row['athlete_name']; ?>
                                             <tr>
-                                                <td>
+                                                <td class="td-athlete">
                                                     <div class="form-group d-flex justify-content-start gap-2">
-                                                        <form class="form" id="form_update_bib" method="POST"
-                                                            style="width: 10%">
+                                                        <form action="backend\sql_update.php" class="form"
+                                                            id="form_update_bib" method="POST" style="width: 10%">
                                                             <input type="hidden" name="athlete_id"
                                                                 value="<?= $row['athlete_id'] ?>">
                                                             <input class="border-0 h-auto w-100 bg-transparent"
@@ -123,7 +78,8 @@ include('asset/navbar.php');
                                                                 value="<?= $row['athlete_bib'] ?>" style="outline: 0">
                                                         </form>
                                                         :
-                                                        <form class="form" id="form_update_name" method="POST">
+                                                        <form action="backend\sql_update.php" class="form"
+                                                            id="form_update_name" method="POST">
                                                             <input type="hidden" name="athlete_id"
                                                                 value="<?= $row['athlete_id'] ?>">
                                                             <input class="border-0 h-auto w-100 bg-transparent"
@@ -133,8 +89,9 @@ include('asset/navbar.php');
                                                         </form>
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    <form class="form" id="form_update_club" method="POST">
+                                                <td class="td-athlete">
+                                                    <form action="backend\sql_update.php" class="form"
+                                                        id="form_update_club" method="POST">
                                                         <input type="hidden" name="athlete_id"
                                                             value="<?= $row['athlete_id'] ?>">
                                                         <input class="border-0 h-auto w-100 bg-transparent text-center"
@@ -143,7 +100,7 @@ include('asset/navbar.php');
                                                             style="outline: 0">
                                                     </form>
                                                 </td>
-                                                <td class=" text-center">
+                                                <td class=" text-center td-athlete">
                                                     <form class="form"
                                                         id="<?= 'form_delete_athlete_' . $row['athlete_id'] ?>">
                                                         <input type="hidden" name="delete_athlete_id"

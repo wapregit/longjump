@@ -5,6 +5,7 @@ include('../database/connect_database.php');
 $athleteId = $_GET['athlete_id'];
 $value = $_GET['value'];
 $id = $_GET['id'];
+$programId = $_GET['program_id'];
 
 if ($id == 1) {
     // Update athlete_result_1
@@ -17,7 +18,7 @@ if ($id == 1) {
         exit(); // Stop execution if there's an error
     } else {
         // Update successful, redirect to competition_result.php
-        echo '<script>window.history.back();</script>';
+        header('Location: ../competition_result.php?select_program=' . $programId);
         exit(); // Stop further execution after redirect
     }
 
@@ -33,7 +34,7 @@ if ($id == 1) {
         exit(); // Stop execution if there's an error
     } else {
         // Update successful, redirect to competition_result.php
-        header('Location: ../competition_result.php');
+        header('Location: ../competition_result.php?select_program=' . $programId);
         exit(); // Stop further execution after redirect
     }
 
@@ -49,7 +50,7 @@ if ($id == 1) {
         exit(); // Stop execution if there's an error
     } else {
         // Update successful, redirect to competition_result.php
-        header('Location: ../competition_result.php');
+        header('Location: ../competition_result.php?select_program=' . $programId);
         exit(); // Stop further execution after redirect
     }
 
@@ -65,7 +66,7 @@ if ($id == 1) {
         exit(); // Stop execution if there's an error
     } else {
         // Update successful, redirect to competition_result.php
-        header('Location: ../competition_result.php');
+        header('Location: ../competition_result.php?select_program=' . $programId);
         exit(); // Stop further execution after redirect
     }
 
@@ -81,7 +82,7 @@ if ($id == 1) {
         exit(); // Stop execution if there's an error
     } else {
         // Update successful, redirect to competition_result.php
-        header('Location: ../competition_result.php');
+        header('Location: ../competition_result.php?select_program=' . $programId);
         exit(); // Stop further execution after redirect
     }
 
@@ -97,7 +98,7 @@ if ($id == 1) {
         exit(); // Stop execution if there's an error
     } else {
         // Update successful, redirect to competition_result.php
-        header('Location: ../competition_result.php');
+        header('Location: ../competition_result.php?select_program=' . $programId);
         exit(); // Stop further execution after redirect
     }
 
