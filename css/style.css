@@ -38,7 +38,7 @@ form select,
 .edit,
 .save {
     cursor: pointer;
-    top: 0;
+    top: 10%;
     right: 0;
 }
 
@@ -48,6 +48,7 @@ form select,
     width: 5vw;
     background-color: #f49c29;
     font-size: clamp(1rem, 0.9279rem + 0.2404vw, 1.3125rem);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .btn-save {
@@ -56,12 +57,14 @@ form select,
     width: 5vw;
     background-color: #50aa12;
     font-size: clamp(1rem, 0.9279rem + 0.2404vw, 1.3125rem);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .span-edit,
 .span-save {
     font-size: clamp(1rem, 0.9279rem + 0.2404vw, 1.3125rem);
     border: 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .table-responsive {
@@ -230,3 +233,29 @@ input[name="search_athlete"] {
     background-color: #091953cf;
     border: 1px solid #dee2e6;
 }
+
+.table-video th {
+    color: #fff;
+    background-color: #091953cf;
+    border: 1px solid #dee2e6;
+}
+
+.table-show-data th:first-child,
+.table-video th:first-child {
+    border-top-left-radius: 15px;
+    border-top: 0;
+    border-left: 0;
+}
+
+.table-show-data th:last-child,
+.table-video th:last-child {
+    border-top-right-radius: 15px;
+    border-top: 0;
+    border-right: 0;
+}
+
+.table-video td {
+    border: 1px solid #dee2e6;
+    background-color: #ccc;
+}
+

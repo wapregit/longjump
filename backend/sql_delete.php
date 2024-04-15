@@ -72,4 +72,73 @@ if (isset($_POST['delete_athlete_id'])) {
         echo "Error: " . $sql_delete_athlete . "<br>" . $condb->$condb->close();
     }
 }
+
+if(isset($_POST['record_id'])) {
+    $record_id = $_POST['record_id'];
+
+    $sql_select_path = "SELECT * FROM competition_record WHERE record_id = ?";
+    $sql_prepare_select_path = $condb->prepare($sql_select_path);
+    $sql_prepare_select_path->bind_param("i", $record_id);
+    $sql_prepare_select_path->execute();
+    $result = $sql_prepare_select_path->get_result();
+
+    if($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $videoFilePath = '../videos/' . $row['record_path'];
+
+        if (file_exists($videoFilePath)) {
+            if (unlink($videoFilePath)) {
+                // ลบวิดีโอจากโฟลเดอร์สำเร็จ
+                // ดำเนินการลบข้อมูลจากฐานข้อมูล
+                $sql_delete_video = "DELETE FROM competition_record WHERE record_id = ?";
+                $sql_prepare_delete_video = $condb->prepare($sql_delete_video);
+                $sql_prepare_delete_video->bind_param("i", $record_id);
+                $sql_prepare_delete_video->execute();
+                $sql_prepare_delete_video->close();
+
+                echo '<script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            Swal.fire({
+                                icon: "success",
+                                title: "ลบรายการสำเร็จ",
+                                text: "Redirecting in 1 second",
+                                showConfirmButton: false,
+                                timer: 1500,
+                                heightAuto: false
+                            }).then(function() {
+                                window.location = "../competition_replay.php";
+                            });
+                        });
+                    </script>';
+            } else {
+                // เกิดข้อผิดพลาดในการลบวิดีโอ
+                showErrorAlertAndRedirect("เกิดข้อผิดพลาดในการลบวิดีโอ");
+            }
+        } else {
+            // ไม่พบไฟล์วิดีโอที่ต้องการลบ
+            showErrorAlertAndRedirect("ไม่พบไฟล์วิดีโอที่ต้องการลบ");
+        }
+    } else {
+        // ไม่พบข้อมูลวิดีโอที่ต้องการลบ
+        showErrorAlertAndRedirect("ไม่พบข้อมูลวิดีโอที่ต้องการลบ");
+    }
+}
+
+function showErrorAlertAndRedirect($errorMessage) {
+    echo '<script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    icon: "error",
+                    title: "'.$errorMessage.'",
+                    text: "Redirecting in 1 second",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    heightAuto: false
+                }).then(function() {
+                    window.location = "../competition_replay.php";
+                });
+            });
+        </script>';
+}
+
 ?>

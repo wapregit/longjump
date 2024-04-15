@@ -62,3 +62,11 @@ $select_all = array();
 while ($row_all = $query_select_all->fetch_assoc()) {
     $select_all[] = $row_all;
 }
+
+
+$sql_select_record = "SELECT * FROM competition_record ORDER BY record_date DESC;";
+$query_select_record = $condb->query($sql_select_record);
+$select_video = array();
+while ($row_video = $query_select_record->fetch_assoc()) {
+    $select_video[] = $row_video;
+}
