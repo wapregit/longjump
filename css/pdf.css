@@ -1,0 +1,71 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table1 {
+    border: 1px solid;
+    border-bottom: 0;
+}
+
+.table2 {
+    border: 1px solid;
+    border-bottom: 0;
+}
+
+.table3 {
+    border: 1px solid;
+}
+
+.table3 th, 
+.table3 td {
+    border: 1px solid;
+    vertical-align: middle;
+}
+
+.table3 th {
+    text-align: center;
+}
+
+.order {
+    width: 5%;
+    text-align: center;
+}
+
+.bib {
+    width: 6%;
+    text-align: center;
+}
+
+.name {
+    width: 22%;
+}
+
+.club {
+    width: 15%;
+}
+
+.bo3 {
+    width: 5%;
+    text-align: center;
+}
+
+.comment {
+    width: 7%;
+    text-align: center;
+}
+
+.result {
+    text-align: center;
+}
+
+.record {
+    text-align: center;
+}
+
+.sign {
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 70%;
+}
