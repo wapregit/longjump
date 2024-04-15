@@ -123,16 +123,16 @@ include('asset/navbar.php');
                                 <tbody>
                                     <?php foreach ($athlete as $athlete) { ?>
                                     <tr class="table-row">
-                                        <td class="table-data text-center">
+                                        <td class="table-data text-center order">
                                             <?= isset($athlete['athlete_order']) ? $athlete['athlete_order'] : 'N/A'; ?>
                                         </td>
-                                        <td class="table-data text-center">
+                                        <td class="table-data text-center bib">
                                             <?= isset($athlete['athlete_bib']) ? $athlete['athlete_bib'] : 'N/A'; ?>
                                         </td>
-                                        <td class="table-data">
+                                        <td class="table-data name">
                                             <?= isset($athlete['athlete_name']) ? $athlete['athlete_name'] : 'N/A N/A'; ?>
                                         </td>
-                                        <td class="table-data">
+                                        <td class="table-data club">
                                             <?= isset($athlete['athlete_club']) ? $athlete['athlete_club'] : 'N/A'; ?>
                                         </td>
                                         <td class="table-data text-center result">
@@ -144,7 +144,7 @@ include('asset/navbar.php');
                                         <td class="table-data text-center result">
                                             <?= isset($athlete['athlete_result_3']) ? $athlete['athlete_result_3'] : ''; ?>
                                         </td>
-                                        <td class="table-data text-center result">
+                                        <td class="table-data text-center bo3">
                                             <?= $athlete['athlete_bo3'] == '0' ? '' : $athlete['athlete_bo3']; ?>
                                         </td>
                                         <td class="table-data text-center result">
@@ -156,13 +156,13 @@ include('asset/navbar.php');
                                         <td class="table-data text-center result">
                                             <?= isset($athlete['athlete_result_6']) ? $athlete['athlete_result_6'] : ''; ?>
                                         </td>
-                                        <td class="table-data text-center">
+                                        <td class="table-data text-center record">
                                             <?= $athlete['athlete_record'] == '0' ? '' : $athlete['athlete_record']; ?>
                                         </td>
-                                        <td class="table-data text-center">
+                                        <td class="table-data text-center ranking">
                                             <?= isset($athlete['athlete_ranking']) ? $athlete['athlete_ranking'] : ''; ?>
                                         </td>
-                                        <td class="table-data text-center">
+                                        <td class="table-data text-center comment">
                                             <?= isset($athlete['athlete_comment']) ? $athlete['athlete_comment'] : 'N/A'; ?>
                                         </td>
                                     </tr>
