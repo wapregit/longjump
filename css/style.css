@@ -135,17 +135,51 @@ th {
     border-top: 0;
 }
 
-.table3 td:first-child {
-    width: 5%;
-}
-
 .table3 tr:nth-child(2) th:nth-child(n + 1) {
     background-color: #f33936a6;
     /* background-color: #f19a2d; */
 }
 
-.result {
+.order {
     width: 5%;
+    text-align: center;
+}
+
+.bib {
+    width: 6%;
+    text-align: center;
+}
+
+.name {
+    width: 20%;
+}
+
+.club {
+    width: 15%;
+}
+
+.bo3 {
+    width: 7%;
+    text-align: center;
+}
+
+.comment {
+    width: 5%;
+    text-align: center;
+}
+
+.result {
+    text-align: center;
+}
+
+.record {
+    width: 7%;
+    text-align: center;
+}
+
+.ranking {
+    width: 7%;
+    text-align: center;
 }
 
 .card-button {

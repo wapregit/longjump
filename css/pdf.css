@@ -63,6 +63,11 @@ table {
     text-align: center;
 }
 
+.ranking {
+    width: 7%;
+    text-align: center;
+}
+
 .sign {
     align-items: center;
     position: absolute;

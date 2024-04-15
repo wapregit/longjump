@@ -94,4 +94,41 @@ if (isset($_POST['update_athlete_club'])) {
         echo "Error: " . $sql_update_club . "<br>" . $condb->$condb->close();
     }
 }
+
+if (isset($_POST['update_table_athlete_id'])) {
+    $programId = $_POST['program_id'];
+    $athleteId = $_POST['update_table_athlete_id'];
+    $athlete_order = $_POST['athlete_order'];
+    $athlete_result1 = $_POST['athlete_result_1'];
+    $athlete_result2 = $_POST['athlete_result_2'];
+    $athlete_result3 = $_POST['athlete_result_3'];
+    $athlete_result4 = $_POST['athlete_result_4'];
+    $athlete_result5 = $_POST['athlete_result_5'];
+    $athlete_result6 = $_POST['athlete_result_6'];
+    $athlete_comment = $_POST['athlete_comment'];
+
+    $sql_update_data = "UPDATE competition_athlete SET athlete_order = ?, athlete_result_1 = ?, athlete_result_2 = ?, athlete_result_3 = ?, athlete_result_4 = ?, athlete_result_5 = ?, athlete_result_6 = ?, athlete_comment = ? WHERE athlete_id = ? ";
+    $sql_prepare_update_data = $condb->prepare($sql_update_data);
+
+    if ($sql_prepare_update_data) {
+        for ($i = 0; $i < count($athleteId); $i++) {
+            $sql_prepare_update_data->bind_param("isssssssi", $athlete_order[$i], $athlete_result1[$i], $athlete_result2[$i], $athlete_result3[$i], $athlete_result4[$i], $athlete_result5[$i], $athlete_result6[$i], $athlete_comment[$i], $athleteId[$i]);
+            $sql_prepare_update_data->execute();
+            echo '<script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    icon: "success",
+                    title: "แก้ไขข้อมูลสำเร็จ",
+                    text: "Redirecting in 1 second",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    heightAuto: false
+                }).then(function() {
+                    window.location = "../competition_result.php?select_program=' . $programId . '";
+                });
+            });
+        </script>';
+        }
+    }
+}
 ?>

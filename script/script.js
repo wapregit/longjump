@@ -220,6 +220,12 @@ function edit_score_athlete() {
 
     save_button.style.display = "";
     edit_button.style.display = "none";
+
+    // หา input ทั้งหมดในแถวแล้วลบค่า disabled
+    var input = document.querySelectorAll("tr.table-row input");
+    input.forEach(function(input) {
+        input.removeAttribute("disabled");
+    });
 }
 
 function submit_form_import_excel() {
@@ -284,3 +290,24 @@ function submit_form_insert_athlete() {
         }
     });
 }
+function submit_form_edit_data() {
+    Swal.fire({
+        title: "ยืนยันการแก้ไขข้อมูลหรือไม่",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#1c7348",
+        cancelButtonColor: "#b72e3c",
+        confirmButtonText: "ตกลง",
+        cancelButtonText: "ยกเลิก",
+        heightAuto: false,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // ถ้ายืนยัน ส่งฟอร์มไปยัง backend/sql_insert.php
+            let form = document.getElementById("form_edit_data_athlete");
+            form.action = "backend/sql_update.php";
+            form.method = "POST";
+            form.submit();
+        }
+    });
+}
+

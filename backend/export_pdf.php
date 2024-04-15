@@ -125,7 +125,7 @@ t<?php
                     <td class="result">' . (isset($athlete['athlete_result_6']) ? $athlete['athlete_result_6'] : '') . '</td>
                     <td class="record">' . ($athlete['athlete_record'] == '0' ? '' : $athlete['athlete_record']) . '</td>
                     <td class="ranking">' . (isset($athlete['athlete_ranking']) ? $athlete['athlete_ranking'] : '') . '</td>
-                    <td class="comment">' . (isset($athlete['athlete_comment']) ? $athlete['athlete_comment'] : 'N/A') . '</td>
+                    <td class="comment">' . (isset($athlete['athlete_comment']) ? $athlete['athlete_comment'] : '') . '</td>
                 </tr>';
             }
         } else {
