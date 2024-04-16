@@ -71,7 +71,7 @@ $stmt->close();
                                     <div class="input-group">
                                         <button class="rounded-start btn-save">บันทึก</button>
                                         <div class="input-group-append">
-                                            <span class="input-group-text span-save"
+                                            <span class="input-group-text span-save h-auto"
                                                 style="border-top-left-radius: 0; border-bottom-left-radius: 0;"><i
                                                     class="bi bi-save2"></i></span>
                                         </div>
@@ -118,27 +118,27 @@ $stmt->close();
                                 </tr>
                                 <tr>
                                     <?php
-                                                $program_date = date('Y-m-d', strtotime($program_table1['program_date']));
-                                                $date = new DateTime($program_date);
-                                                $thai_months = array(
-                                                    1 => 'มกราคม',
-                                                    2 => 'กุมภาพันธ์',
-                                                    3 => 'มีนาคม',
-                                                    4 => 'เมษายน',
-                                                    5 => 'พฤษภาคม',
-                                                    6 => 'มิถุนายน',
-                                                    7 => 'กรกฎาคม',
-                                                    8 => 'สิงหาคม',
-                                                    9 => 'กันยายน',
-                                                    10 => 'ตุลาคม',
-                                                    11 => 'พฤศจิกายน',
-                                                    12 => 'ธันวาคม'
-                                                );
-                                                $day = $date->format('d');
-                                                $month = $thai_months[(int)$date->format('m')];
-                                                $year = $date->format('Y') + 543; // แปลงเป็นปี พ.ศ.
-                                                $program_thai_date = "$day $month $year";
-                                                ?>
+                                            $program_date = date('Y-m-d', strtotime($program_table1['program_date']));
+                                            $date = new DateTime($program_date);
+                                            $thai_months = array(
+                                                1 => 'มกราคม',
+                                                2 => 'กุมภาพันธ์',
+                                                3 => 'มีนาคม',
+                                                4 => 'เมษายน',
+                                                5 => 'พฤษภาคม',
+                                                6 => 'มิถุนายน',
+                                                7 => 'กรกฎาคม',
+                                                8 => 'สิงหาคม',
+                                                9 => 'กันยายน',
+                                                10 => 'ตุลาคม',
+                                                11 => 'พฤศจิกายน',
+                                                12 => 'ธันวาคม'
+                                            );
+                                            $day = $date->format('d');
+                                            $month = $thai_months[(int)$date->format('m')];
+                                            $year = $date->format('Y') + 543; // แปลงเป็นปี พ.ศ.
+                                            $program_thai_date = "$day $month $year";
+                                            ?>
                                     <th class="fw-bolder"> <?= $program_thai_date; ?> </th>
                                 </tr>
                                 <?php } ?>
@@ -198,7 +198,8 @@ $stmt->close();
                                         value="<?= $athlete['athlete_id'] ?>">
                                     <tr class="table-row">
                                         <td class="table-data text-center order">
-                                            <?= isset($athlete['athlete_order']) ? '<input type="text" name="athlete_order[]" class="bg-transparent border-0 w-100 text-center" value="'. $athlete['athlete_order'] . '" disabled>' : '<input type="text" name="athlete_order[]" class="bg-transparent border-0 w-100 text-center" value="N/A" disabled>'; ?>
+                                            <?= isset($athlete['athlete_order']) ? '<input type="text" name="athlete_order[]" class="bg-transparent border-0 w-100 text-center" value="' . $athlete['athlete_order'] . '" autocomplete="off" disabled>' : 
+                                            '<input type="text" name="athlete_order[]" class="bg-transparent border-0 w-100 text-center"  value="' . $athlete['athlete_order'] . '" placeholder="N/A" autocomplete="off" disabled>'; ?>
                                         </td>
                                         <td class="table-data text-center bib">
                                             <?= isset($athlete['athlete_bib']) ? $athlete['athlete_bib'] : 'N/A'; ?>
@@ -210,41 +211,77 @@ $stmt->close();
                                             <?= isset($athlete['athlete_club']) ? $athlete['athlete_club'] : 'N/A'; ?>
                                         </td>
                                         <td class="table-data text-center result">
-                                            <?= isset($athlete['athlete_result_1']) ? '<input type="text" name="athlete_result_1[]" class="bg-transparent border-0 w-100 text-center" value="'. $athlete['athlete_result_1'] . '" disabled>' : '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=1&program_id=' . $athlete['program_id'] . '"><div class="btn btn-success" style="width: 3vw">บันทึก</div></a> <a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . '-' . '&id=1&program_id=' . $athlete['program_id'] . '"><div class="btn btn-danger" style="width: 3vw">ขาด</div></a>'; ?>
+                                            <?= isset($athlete['athlete_result_1']) ? '<input type="text" name="athlete_result_1[]" class="bg-transparent border-0 w-100 text-center" value="' . $athlete['athlete_result_1'] . '" autocomplete="off" disabled>' : 
+                                            '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=1&program_id=' . $athlete['program_id'] . '">
+                                            <div class="btn btn-success" style="width: 3vw">บันทึก</div></a> 
+                                            <a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . '-' . '&id=1&program_id=' . $athlete['program_id'] . '">
+                                            <div class="btn btn-danger" style="width: 3vw">ขาด</div></a> 
+                                            '; ?>
                                         </td>
                                         <td class="table-data text-center result">
-                                            <?= isset($athlete['athlete_result_2']) ? '<input type="text" name="athlete_result_2[]" class="bg-transparent border-0 w-100 text-center" value="'. $athlete['athlete_result_2'] . '" disabled>' : '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=2&program_id=' . $athlete['program_id'] . '"><div class="btn btn-success" style="width: 3vw">บันทึก</div></a> <a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . '-' . '&id=2&program_id=' . $athlete['program_id'] . '"><div class="btn btn-danger" style="width: 3vw">ขาด</div></a>'; ?>
+                                            <?= isset($athlete['athlete_result_2']) ? '<input type="text" name="athlete_result_2[]" class="bg-transparent border-0 w-100 text-center" value="' . $athlete['athlete_result_2'] . '" autocomplete="off" disabled>' : 
+                                            '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=2&program_id=' . $athlete['program_id'] . '">
+                                            <div class="btn btn-success" style="width: 3vw">บันทึก</div></a> 
+                                            <a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . '-' . '&id=2&program_id=' . $athlete['program_id'] . '">
+                                            <div class="btn btn-danger" style="width: 3vw">ขาด</div></a> 
+                                            '; ?>
                                         </td>
                                         <td class="table-data text-center result">
-                                            <?= isset($athlete['athlete_result_3']) ? '<input type="text" name="athlete_result_3[]" class="bg-transparent border-0 w-100 text-center" value="'. $athlete['athlete_result_3'] . '" disabled>' : '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=3&program_id=' . $athlete['program_id'] . '"><div class="btn btn-success" style="width: 3vw">บันทึก</div></a> <a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . '-' . '&id=3&program_id=' . $athlete['program_id'] . '""><div class="btn btn-danger" style="width: 3vw">ขาด</div></a>'; ?>
+                                            <?= isset($athlete['athlete_result_3']) ? '<input type="text" name="athlete_result_3[]" class="bg-transparent border-0 w-100 text-center" value="' . $athlete['athlete_result_3'] . '" autocomplete="off" disabled>' : 
+                                            '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=3&program_id=' . $athlete['program_id'] . '">
+                                            <div class="btn btn-success" style="width: 3vw">บันทึก</div></a> 
+                                            <a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . '-' . '&id=3&program_id=' . $athlete['program_id'] . '">
+                                            <div class="btn btn-danger" style="width: 3vw">ขาด</div></a> 
+                                            '; ?>
                                         </td>
                                         <td class="table-data text-center bo3">
-                                            <?php if($athlete['athlete_bo3'] == '0')  {
-                                                        echo '';
-                                                    }else  if($athlete['athlete_result_1'] == '-' && $athlete['athlete_result_2'] == '-' && $athlete['athlete_result_3'] == '-') {
-                                                        echo '-';
-                                                    }else {
-                                                        echo $athlete['athlete_bo3'];
+                                            <?php
+                                                    $bo3 = '';
+                                                    if ($athlete['athlete_bo3'] == '0') {
+                                                        $bo3 = '';
+                                                        if ($athlete['athlete_result_1'] == '-' && $athlete['athlete_result_2'] == '-' && $athlete['athlete_result_3'] == '-') {
+                                                            $bo3 = '-';
+                                                        }
+                                                    } else {
+                                                        $bo3 = $athlete['athlete_bo3'];
                                                     }
-                                                ?>
+                                                    echo $bo3
+                                                    ?>
                                         </td>
                                         <td class="table-data text-center result">
-                                            <?= isset($athlete['athlete_result_4']) ? '<input type="text" name="athlete_result_4[]" class="bg-transparent border-0 w-100 text-center" value="'. $athlete['athlete_result_4'] . '" disabled>' : '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=4&program_id=' . $athlete['program_id'] . '"><div class="btn btn-success" style="width: 3vw">บันทึก</div></a> <a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . '-' . '&id=4&program_id=' . $athlete['program_id'] . '"><div class="btn btn-danger" style="width: 3vw">ขาด</div></a>'; ?>
+                                            <?= isset($athlete['athlete_result_4']) ? '<input type="text" name="athlete_result_4[]" class="bg-transparent border-0 w-100 text-center" value="' . $athlete['athlete_result_4'] . '" autocomplete="off" disabled>' : 
+                                            '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=4&program_id=' . $athlete['program_id'] . '">
+                                            <div class="btn btn-success" style="width: 3vw">บันทึก</div></a> 
+                                            <a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . '-' . '&id=4&program_id=' . $athlete['program_id'] . '">
+                                            <div class="btn btn-danger" style="width: 3vw">ขาด</div></a> 
+                                            '; ?>
                                         </td>
                                         <td class="table-data text-center result">
-                                            <?= isset($athlete['athlete_result_5']) ? '<input type="text" name="athlete_result_5[]" class="bg-transparent border-0 w-100 text-center" value="'. $athlete['athlete_result_5'] . '" disabled>' : '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=5&program_id=' . $athlete['program_id'] . '"><div class="btn btn-success" style="width: 3vw">บันทึก</div></a> <a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . '-' . '&id=5&program_id=' . $athlete['program_id'] . '"><div class="btn btn-danger" style="width: 3vw">ขาด</div></a>'; ?>
+                                            <?= isset($athlete['athlete_result_5']) ? '<input type="text" name="athlete_result_5[]" class="bg-transparent border-0 w-100 text-center" value="' . $athlete['athlete_result_5'] . '" autocomplete="off" disabled>' : 
+                                            '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=5&program_id=' . $athlete['program_id'] . '">
+                                            <div class="btn btn-success" style="width: 3vw">บันทึก</div></a> 
+                                            <a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . '-' . '&id=5&program_id=' . $athlete['program_id'] . '">
+                                            <div class="btn btn-danger" style="width: 3vw">ขาด</div></a> 
+                                            '; ?>
                                         </td>
                                         <td class="table-data text-center result">
-                                            <?= isset($athlete['athlete_result_6']) ? '<input type="text" name="athlete_result_6[]" class="bg-transparent border-0 w-100 text-center" value="'. $athlete['athlete_result_6'] . '" disabled>' : '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=6&program_id=' . $athlete['program_id'] . '"><div class="btn btn-success" style="width: 3vw">บันทึก</div></a> <a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . '-' . '&id=6&program_id=' . $athlete['program_id'] . '"><div class="btn btn-danger" style="width: 3vw">ขาด</div></a>'; ?>
+                                            <?= isset($athlete['athlete_result_6']) ? '<input type="text" name="athlete_result_6[]" class="bg-transparent border-0 w-100 text-center" value="' . $athlete['athlete_result_6'] . '" autocomplete="off" disabled>' : 
+                                            '<a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . $row["value"] . '&id=6&program_id=' . $athlete['program_id'] . '">
+                                            <div class="btn btn-success" style="width: 3vw">บันทึก</div></a> 
+                                            <a href="backend/insert_data.php?athlete_id=' . $athlete['athlete_id'] . '&value=' . '-' . '&id=6&program_id=' . $athlete['program_id'] . '">
+                                            <div class="btn btn-danger" style="width: 3vw">ขาด</div></a> 
+                                            '; ?>
                                         </td>
                                         <td class="table-data text-center record">
                                             <?= $athlete['athlete_record'] == '0' ? '' : $athlete['athlete_record']; ?>
                                         </td>
                                         <td class="table-data text-center ranking">
-                                            <?= isset($athlete['athlete_ranking']) ? $athlete['athlete_ranking'] : ''; ?>
+                                            <?= isset($athlete['athlete_ranking']) ? '<input type="text" name="athlete_ranking[]" class="bg-transparent border-0 w-100 text-center" value="' . $athlete['athlete_ranking'] . '" autocomplete="off" disabled>' : 
+                                            '<input type="text" name="athlete_ranking[]" class="bg-transparent border-0 w-100 text-center"  value="' . $athlete['athlete_ranking'] . '" placeholder="" autocomplete="off" disabled>'; ?>
                                         </td>
                                         <td class="table-data text-center comment">
-                                            <?= isset($athlete['athlete_comment']) ? '<input type="text" name="athlete_comment[]" class="bg-transparent border-0 w-100 text-center" value="'. $athlete['athlete_comment'] . '" disabled>' : ''; ?>
+                                            <?= isset($athlete['athlete_comment']) ? '<input type="text" name="athlete_comment[]" class="bg-transparent border-0 w-100 text-center" value="' . $athlete['athlete_comment'] . '" autocomplete="off" disabled>' : 
+                                            '<input type="text" name="athlete_comment[]" class="bg-transparent border-0 w-100 text-center" value="' . $athlete['athlete_comment'] . '" autocomplete="off" disabled>'; ?>
                                         </td>
                                     </tr>
                                     <?php } ?>

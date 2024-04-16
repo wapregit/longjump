@@ -19,7 +19,7 @@ if (isset($_GET['select_program'])) {
     }
 
     //ดึงข้อมูลจากตาราง competition_athlete
-    $sql_select_athlete = "SELECT * FROM competition_athlete WHERE program_id = '$program_id';";
+    $sql_select_athlete = "SELECT * FROM competition_athlete WHERE program_id = '$program_id' ORDER BY athlete_order ASC;";
     $query_select_athlete = $condb->query($sql_select_athlete);
     $athlete = array();
     while ($row_athlete = $query_select_athlete->fetch_assoc()) {
@@ -39,7 +39,7 @@ if (isset($_POST['select_program'])) {
     }
 
     //ดึงข้อมูลจากตาราง competition_athlete
-    $sql_select_athlete = "SELECT * FROM competition_athlete WHERE program_id = '$program_id';";
+    $sql_select_athlete = "SELECT * FROM competition_athlete WHERE program_id = '$program_id' ORDER BY athlete_order ASC;";
     $query_select_athlete = $condb->query($sql_select_athlete);
     $athlete = array();
     while ($row_athlete = $query_select_athlete->fetch_assoc()) {
