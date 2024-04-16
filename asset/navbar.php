@@ -26,4 +26,4 @@
         </div>
     </nav>
 
-    <!-- <?php include('backend/loading.php'); ?> -->
+    <?php include('backend/loading.php'); ?>
